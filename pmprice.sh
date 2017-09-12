@@ -1,8 +1,13 @@
- text-only version of current spot prices for precious
+#!/bin/bash
+
+# Grab a text-only version of current spot prices for precious
 # metals, clear the screen so it's not cluttered, use sed to
-# remove all the html, delete the file.
+# strip out most of the HTML, delete the files you created.
+# sed is weird in OSX, you have to specify an extension for
+# the backup file, should work without on other nixes.
 
 curl https://www.kitco.com/texten/texten.html > pmprice.txt
 clear
-sed '46,58!d' pmprice.txt
-rm -f pmprice.txt
+sed -i .bk '1,/bullion/d; /<b>/,$d;' pmprice.txt
+cat pmprice.txt
+rm -f pmprice.txt pmprice.txt.bk
