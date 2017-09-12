@@ -8,6 +8,6 @@
 
 curl https://www.kitco.com/texten/texten.html > pmprice.txt
 clear
-sed -i .bk '1,/bullion/d; /<b>/,$d;' pmprice.txt
+sed -i .bk '1,/bullion/d; /<b>/,$d; s/<[^>]*>//g' pmprice.txt
 cat pmprice.txt
 rm -f pmprice.txt pmprice.txt.bk
